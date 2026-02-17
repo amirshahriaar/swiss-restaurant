@@ -1,0 +1,310 @@
+﻿@font-face {
+    font-family: 'IranYekan';
+    src: url('fonts/Qs_Iranyekan.ttf') format('truetype');
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'IranYekan', Tahoma, sans-serif; }
+html { scroll-behavior: smooth; }
+
+/* Preloader */
+#preloader { position: fixed; inset: 0; background: #fff; display: flex; justify-content: center; align-items: center; z-index: 2000; transition: 0.5s; }
+.loader { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #c0392b; border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Header */
+header { position: fixed; width: 100%; top: 0; z-index: 1000; padding: 20px 0; transition: 0.4s; }
+header.sticky { background: rgba(255,255,255,0.98); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 10px 0; }
+nav { display: flex; justify-content: space-around; align-items: center; max-width: 1200px; margin: 0 auto; }
+nav ul { display: flex; list-style: none; }
+nav ul li a { text-decoration: none; color: #fff; margin: 0 15px; font-weight: bold; }
+header.sticky nav ul li a { color: #333; }
+.logo { font-size: 1.5rem; color: #c0392b; font-weight: 900; }
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 10px 0; /* کمی فشرده‌تر */
+    background: rgba(26, 26, 26, 0.95); /* تیره و شیک */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
+    overflow: hidden; /* جلوگیری از اسکرول خوردن افقی در آیفون */
+}
+
+.logo {
+    font-size: 1.1rem;
+    flex-shrink: 0; /* اجازه نده لوگو له بشه */
+    margin-left: 10px;
+}
+
+nav ul {
+    display: flex;
+    list-size: none;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-end; /* منو رو به چپ می‌چسبونه */
+    flex-grow: 1; /* فضای باقی‌مونده رو پر می‌کنه */
+}
+
+nav ul li {
+    margin: 0 .1px; /* حداقل فاصله ممکن */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 12px; /* اندازه استاندارد برای موبایل */
+    white-space: nowrap;
+}
+
+@media (max-width: 370px) {
+    /* محو کردن آیتم خانه در عرض‌های بسیار کم */
+    .home-link {
+        display: none;
+    }
+
+    /* کمی بزرگتر کردن فاصله بقیه آیتم‌ها حالا که جا باز شده */
+    nav ul li {
+        margin: 0 6px;
+    }
+
+    nav ul li a {
+        font-size: 12px; /* حالا می‌توانیم فونت را کمی خواناتر کنیم */
+    }
+}
+
+/* Hero Slider */
+.hero-slider { 
+    position: relative; 
+    height: 100vh; /* ارتفاع در دسکتاپ */
+    width: 100%;
+    overflow: hidden; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #fff; 
+    text-align: center; 
+}
+
+.slide { 
+    position: absolute; 
+    inset: 0; 
+    background-size: cover; 
+    background-position: center center; /* عکس همیشه از وسط فیکس شود */
+    background-repeat: no-repeat;
+    opacity: 0; 
+    transition: opacity 1s ease-in-out; 
+    z-index: -1; 
+}
+.slide.active { opacity: 1; }
+.hero-content h1 { font-size: 4rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+
+/* فلش اسکرول به پایین */
+.scroll-down { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); cursor: pointer; }
+.scroll-down span { display: block; width: 20px; height: 20px; border-bottom: 3px solid #fff; border-right: 3px solid #fff; transform: rotate(45deg); animation: bounce 2s infinite; }
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);} 40% {transform: translateY(-10px) rotate(45deg);} 60% {transform: translateY(-5px) rotate(45deg);} }
+
+/* Back to Top */
+#backToTop {
+    display: none; position: fixed; bottom: 30px; right: 30px; /* سمت راست */
+    background: #c0392b; color: #fff; border: none; width: 55px; height: 55px;
+    border-radius: 50%; cursor: pointer; z-index: 1001; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Common Sections */
+.container { max-width: 1500px; margin: 100px auto; padding: 0 20px; }
+.reveal { opacity: 0; transform: translateY(30px); transition: 1s; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+.about-flex { display: flex; align-items: center; gap: 40px; }
+.about-img img { width: 100%; border-radius: 20px; }
+.menu-grid, .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.menu-card img, .gallery-grid img { width: 100%; border-radius: 10px; transition: 0.3s; }
+.menu-card:hover img { transform: scale(1.05); }
+
+footer {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    padding: 70px 0 20px;
+    border-top: 4px solid #c0392b;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.footer-column h3 {
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 2px;
+    background: #c0392b;
+}
+
+.footer-column p {
+    line-height: 2;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #c0392b;
+    padding-right: 10px;
+}
+
+/* استایل لینک تلفن برای جلوگیری از آبی شدن */
+.phone-link {
+    color: #fff; /* رنگ متن سفید (یا هر رنگی که برای متن فوتر داری) */
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.phone-link:hover {
+    color: #c0392b; /* تغییر رنگ به قرمز موقع نگه داشتن موس */
+}
+
+/* استایل لوگوی اینستاگرام */
+.social-links a {
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.social-links a:hover {
+    transform: scale(1.1);
+}
+
+.social-links svg {
+    fill: #fff; /* رنگ لوگو سفید باشد */
+    transition: fill 0.3s;
+}
+
+.social-links a:hover svg {
+    fill: #c0392b; /* رنگ لوگو موقع هاور قرمز شود */
+}
+
+/* اصلاح دکمه تماس مستقیم */
+.call-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 20px;
+    background: #c0392b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+}
+
+.footer-column i {
+    margin-left: 10px;
+    color: #c0392b;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* ریسپانسیو فوتر */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-column h3::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .social-links {
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-slider { 
+        height: 60vh; /* در موبایل ارتفاع کمتر شود تا عکس‌ها خیلی بزرگ نباشند */
+    }
+
+    .hero-content h1 { 
+        font-size: 2rem; /* کوچک‌تر کردن فونت عنوان در موبایل */
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .about-flex { 
+        flex-direction: column; 
+    }
+
+    /* تنظیم مجدد دکمه بازگشت به بالا در موبایل */
+    #backToTop {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .hero-slider {
+        height: 60vh; /* ارتفاع اسلایدر در موبایل ۶۰ درصد ارتفاع صفحه باشد */
+    }
+}
+/* تیرِ آخر برای محو کردن اولین آیتم منو (خانه) در موبایل */
+@media (max-width: 430px) { 
+    nav ul li:first-child {
+        display: none !important;
+    }
+    
+    nav ul {
+        justify-content: center !important; /* وسط‌چین کردن بقیه آیتم‌ها */
+        width: 100%;
+    }
+
+    nav ul li a {
+        font-size: 11px !important;
+        margin: 0 17px !important;
+    }
+}
